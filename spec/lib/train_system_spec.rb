@@ -1,4 +1,4 @@
-require './lib/underground_system'
+# frozen_string_literal: true
 
 RSpec.describe UndergroundSystem do
   it 'works' do

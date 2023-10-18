@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UndergroundSystem
+  attr_reader :check_ins, :journey_times
+
   def initialize
     @check_ins = {}
     @journey_times = Hash.new { |hash, key| hash[key] = [0, 0] }
@@ -19,6 +21,9 @@ class UndergroundSystem
   def get_average_time(start_station, end_station)
     total_time, total_trips = @journey_times[[start_station, end_station]]
     # could use BigDecimal here to avoid rounding errors
-    total_time.to_f / total_trips
+    result = total_time.to_f / total_trips
+    return nil if result.nan?
+
+    result
   end
 end
